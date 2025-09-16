@@ -1,0 +1,79 @@
+
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="app">
+            <h1>{{ hello }}</h1>
+            <p>Greeting:<b>{{ hello }}</b></p>
+            <p v-bind:title="tooltip">move maus here</p>
+            <p :class="color">jajjajjaj</p>
+            <p :class="[color, fontweight]">HEHEHEHAW</p>
+            <p :style ="styleObject">csunyaszöveg</p>
+            <p>{{ hello.split('').reverse().join('')}}</p>
+            <span v-html="myheader"></span>
+            {{ myheader }}<br>
+            
+            <span v-once>{{hello}}</span>
+            <p>{{ reverseHello }}</p>
+            <p>{{ capitalizeHello() }}</p>
+            <p>{{ add(1,3) }}</p>
+
+            <p v-if="showHelloWorld">HEllo wood</p>
+            <template v-if="showHelloWorld" >
+                <p>wello hold</p>
+                <p>hoodbye wold</p>
+            </template>
+            <p v-show="showHelloWorld">show worldrf</p>
+
+            <p v-if="a > 0">pozit</p>
+            <p v-else-if="a < 0">nega</p>
+            <p v-else>nullas</p>
+
+
+            <ul>
+                <li v-for="fruit in fruits" :key="fruit">{{fruit}}</li>
+            </ul>
+
+            <div v-for="(fruit, index) in fruits" >{{index +1}}. {{ fruit }}</div>
+
+
+            <ul>
+                <li v-for="value in person">{{value}}</li>
+            </ul>
+            <ul>
+                <li v-for="(value, key) in person" >{{key}}: {{ value }}</li>
+            </ul>
+
+            <ul>
+                <li v-for="n in 10">{{n}}</li>
+            </ul>
+            <!-- <ul>
+                <span v-for="todo in todos">
+                    <li v-if="!todo.done">{{todo.text}}</li>
+                </span>
+            </ul> -->
+
+            <button @click="addSome(1)"> Add 1</button>
+            <button @click="addSome(3)"> Add 3</button>
+            <p > {{counter}}</p>
+
+            <a @click.prevent="addOne" href="https:\\szbi-pg.hu">PÖGÖ</a>
+            <input type="text" @keyup.enter="addSome(1)" @keyup.space="addSome(5)">
+
+            <p @mouseover="performMouseOver()" @mouseout="performMouseOut()">eger over</p>
+            <p>status: {{mouseEventStatus}} </p>
+
+
+
+            <ul>
+                <li v-for="n in 5"  @click="addSome(n)">Add {{n}}</li>
+            </ul>
+            <input type="text"  v-model="inputText">
+            <p>{{inputText}}</p>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
