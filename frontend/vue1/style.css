@@ -1,0 +1,16 @@
+.redtext{
+    color: red;
+}
+.greentext{
+    color:green;
+}
+.bluetext{
+    color:blue;
+}
+
+.boldtext{
+    font-weight: bold;
+}
+html{
+    background-color: lightslategray;
+}

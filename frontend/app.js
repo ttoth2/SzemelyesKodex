@@ -1,67 +1,121 @@
-new Vue({
-    el: '#app',
-    data:{
-        hello: 'Hello Wold $',
-       // reverseHello: '',
-        tooltip: 'maus',
-        color: 'redtext',
-        fontweight: 'boldtext',
-        styleObject: {
-            color: 'green',
-            fontSize:'10px'
-        },
-        myheader:'<h2>mindegy it milyen szövegvan koma</h2>',
-        showHelloWorld: false,  //app.__vue__.showHelloWorld = true
-        a: -1,
-        fruits: ['apple','banannan','anans'],
-        person: {
-            firstname:'csaba',
-            lastname: 'Tóth' ,
-            age: 30,    
-        },
-        counter: 0,
-        mouseEventStatus: 'start',
-        inputText: 'hello wild'
-    },
-    created: function(){
-        this.reverseHello = this.hello.split('').reverse().join('');
+let myMixin = {
+    created() {
+        this.hello();
     },
     methods: {
-        /*reverseHello: function(){
-            return this.hello.split('').reverse().join('');
-        },*/
-        capitalizeHello: function(){
-            return this.hello.toUpperCase();
-        },
-        add(a,b){
-            return a+b;
-        },
-        addOne(event){
-            if(event){
-                event.preventDefault();
-            }
-            this.counter +=1;
-        },
-        addSome(valueToAdds){
-           
-            this.counter +=valueToAdds;
-        },
-        performMouseOver(){
-            this.mouseEventStatus='maus over'
-        },
-        performMouseOut(){
-            this.mouseEventStatus='maus Out'
-        },
-    },
-    /*watch:{
-        hello: function(myValue){
-            this.reverseHello =myValue.split('').reverse().join('')
+        hello() {
+            console.log('Hello from mixin!');
         }
     }
-    */
-   computed: {
-        reverseHello: function(){
-            return this.hello.split('').reverse().join('');
+}
+
+Vue.component('button-counter', {
+    mixins: [myMixin],
+    data() {
+        return {
+            counter: 0
         }
-   }
+    },
+    template: `
+    <div>
+        <button @click="counter++">Add 1</button>
+        Counter: {{ counter }}
+    </div>
+    `
+
+
+    /*data: function () {
+        return {
+            counter: 0
+        }
+    },*/
+    /*
+    props: ['counter'],
+    template: `
+    '<div>
+        <button @click ="$emit('add-some', 1)">Add 1</button>
+        <button @click ="$emit('add-some', 5)">Add 5</button>
+
+        Counter: {{ counter }}
+    </div>'
+    `*/
 })
+
+
+/*
+Vue.component('component-a', {
+    template: `<div>Component A</div>`
+})
+
+Vue.component('component-b', {
+    template: `<div><component-a></component-a>Component B </div>`
+})
+
+Vue.component('component-b', {
+    template: `<div>Component C</div>`
+})
+*/
+
+/*
+let ComponentA = {
+    template: `<div>Component A</div>`
+}
+
+let ComponentB = {
+    template: `<div>Component B</div>`
+}
+
+let ComponentC = {
+    template: `<div>Component C</div>`
+}
+*/
+Vue.component('custom-input', {
+    props: ['value'],
+    template: `
+    <input :value="value" @input="$emit('input', $event.target.value)">
+    `
+})
+
+Vue.component('hello-user', {
+    props: ['name'],
+    template: '<div>Hello, <slot></slot>!</div>'
+})
+
+let app = new Vue({
+    el: '#app',
+    data: {
+        name: 'SomaFoxRunningClub',
+        inputText: 'Hello world'
+    },
+    /*
+    components: {
+        'component-a': ComponentA,
+        'component-b': ComponentB
+    },*/
+    /*data: {
+
+        name: 'SomaFoxRunningClub',
+        counter: 0
+
+    },*/
+    /*methods: {
+        addOne() {
+            this.counter++;
+        },
+        addSome(valueToAdd) {
+            this.counter += valueToAdd;
+        }
+    }*/
+})
+/*
+Vue.component('hello-user', {
+    // props: ['name'],
+    props: {
+        name: {
+            type: String,
+            required: false,
+            default: 'SomaFoxRunningClub'
+        }
+    },
+    template: '<div>Hello, {{name}}!</div>'
+})*/
