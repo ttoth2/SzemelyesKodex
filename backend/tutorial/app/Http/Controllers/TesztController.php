@@ -11,4 +11,11 @@ class TesztController
 
         return view('pages.teszt',compact('randomName'));
     }
+
+    public function names()
+    {
+        
+        $names=['soma','koma','róka','tunya'];
+        return view('pages.names',compact('names'));
+    }
 }

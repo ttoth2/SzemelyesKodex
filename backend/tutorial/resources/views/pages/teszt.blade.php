@@ -1,5 +1,5 @@
 @extends('layout.app')
-
+@section('tittle', '| KOMA oldal')
 @section('content')
     
 
