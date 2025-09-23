@@ -1,0 +1,8 @@
+.tab-szoveg{
+    font-weight: bold;
+    color: blue;
+}
+.tab-szoveg.active{
+    font-weight: bold;
+    color: red;
+}
