@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>Kereszt név: <input type="text" v-model="inpt1" :maxlength="num1" @input="megszam('num11',num1, $event)"> még {{ num11 }}</p>
+        <p>Vezeték név: <input type="text" v-model="inpt2" :maxlength="num2" @input="megszam('num22',num2, $event)"> még {{ num22 }}</p>
+
+        <hbutton @click="inpt1 = '', inpt2 = '', num11 = num1, num22 = num2">Törlés</button>
+        <abutton @click="alert('Kereszt név: ' + inpt1 + '\nVezeték név: ' + inpt2)">Mentés</abutton>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
