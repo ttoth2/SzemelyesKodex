@@ -1,4 +1,5 @@
-new Vue({
+
+let app= new Vue({
     el:'#app',
     data:{
         num1: 10,
@@ -10,41 +11,25 @@ new Vue({
         hun: '',
         ang: '',
     },
-    computed:{
+    methods:{
         megszam(num,input,e){
             this[num] = input - e.target.value.length;
         },
         hunir() {
             if (this.inpt1.length> 0 && this.inpt2.length > 0) {
-                this.hun = this.inpt1.text + ' ' + this.inpt2.text;
+                this.hun = this.inpt1+ ' ' + this.inpt2;
             }
-           
         },
         angir() {
             if (this.inpt1.length> 0 && this.inpt2.length > 0) {
-                this.ang = this.inpt2.text + ' ' + this.inpt1.text;
+                this.ang = this.inpt2 +' ' + this.inpt1;
             }
         }
+        
+    },
+    computed:{
+        
     }
 })
-Vue.component('hbutton', {
-    data: function(){
-        return {
-            counter: 0
-        }
-    },
-    template:`  
-    <button @click="hunir">magyar nev </button>
-    <p>Count: {{hun}}</p>`
-})
-Vue.component('abutton', {
-    data: function(){
-        return {
-            counter: 0
-        }
-    },
-    template:`  
-    <<button @click="angir">angol nev </button>
-    <p>Count: {{ang}}</p>`
-})
+
 
