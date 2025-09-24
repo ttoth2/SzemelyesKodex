@@ -14,7 +14,7 @@ new Vue({
     el:'#app',
     data:{
         currentTab:'Home',
-        tabs:['Hom','Hello','Fruit']
+        tabs:['Home','Hello','Fruit']
     },
     computed:{
         currentTabComponent:function(){
