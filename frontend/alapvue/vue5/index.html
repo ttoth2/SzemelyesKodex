@@ -10,10 +10,11 @@
         <p>Kereszt név: <input type="text" v-model="inpt1" :maxlength="num1" @input="megszam('num11',num1, $event)"> még {{ num11 }}</p>
         <p>Vezeték név: <input type="text" v-model="inpt2" :maxlength="num2" @input="megszam('num22',num2, $event)"> még {{ num22 }}</p>
 
-        <p>Count: {{hun}}</p>
-        <button @click="hungir">magyar nev </button>
-        <button @click="angir">angol nev </button>
-        <p>Count: {{ang}}</p>
+        <h1 v-if="mutat">Üdv {{udv}}!</h1>
+        <button @click="ir('mutat1')">magyar nev </button>
+        <button @click="ir('mutat2')">angol nev </button>
+        <p v-if="mutat2">Angol név {{ang}}</p>
+        <p v-if="mutat1">Magyar név: {{hun}}</p>
     </div>
 
 
