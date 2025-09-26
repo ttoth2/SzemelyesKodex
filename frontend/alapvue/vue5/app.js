@@ -31,21 +31,16 @@ let app= new Vue({
                 this.ang = this.inpt2 +' ' + this.inpt1;
                 this.mutat1 = false;
                 this.mutat2 = false;
-                this[mutat] = true;
-               
+                this[mutat] = true;       
             }
             else {
                 this.mutat1 = false;
                 this.mutat2 = false;
                 this.hun = '';
                 this.ang = '';
-            
             }
         },
-        
-        
-    },
-    
+    }, 
 })
 
 
