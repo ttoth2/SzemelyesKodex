@@ -26,16 +26,14 @@ let app= new Vue({
             }
         },
         ir(mutat) {
+            this.mutat1 = false;
+            this.mutat2 = false;
             if (this.inpt1.length> 0 && this.inpt2.length > 0) {
                 this.hun = this.inpt1+ ' ' + this.inpt2;
                 this.ang = this.inpt2 +' ' + this.inpt1;
-                this.mutat1 = false;
-                this.mutat2 = false;
                 this[mutat] = true;       
             }
             else {
-                this.mutat1 = false;
-                this.mutat2 = false;
                 this.hun = '';
                 this.ang = '';
             }
