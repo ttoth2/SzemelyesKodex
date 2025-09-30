@@ -1,12 +1,12 @@
-<script setup>
-import HelloUser from './components/HelloUser.vue'
+<script>
+
 </script>
 
 <template>
- <div id="app">
-    <hello-user name="Soma"></hello-user>
-    
- </div>
+   <div id="app">
+         <hello-user name="Soma"></hello-user>
+         <button-counter> </button-counter>
+   </div>
 </template>
 
 <style>
