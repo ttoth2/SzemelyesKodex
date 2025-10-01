@@ -21,25 +21,27 @@ export default {
 </script>
 
 <template>
-    <h1 class="mb-4 text-center">
+
+<h1 class="mb-4 text-center">
         Ajánlataink
-    </h1>
-    <table>
-        <tr>
-            <th>Karegoria</th>
-            <th>Leiras</th>
-            <th>Hirdetes datuma</th>
-            <th>Tehermentes</th>
-            <th>Fénykép</th>
-        </tr>
-        <tr v-for="ingatlan in ingatlanok" :key="ingatlan.id">
-            <td class="text-center">{{ ingatlan.kategoriaNev }}</td>
-            <td>{{ ingatlanok.loeiras }}</td>
-            <td class="text-center ? 'zold' : 'piros'">{{ ingatlan.hirdetasDatuma }}</td>
-            <td class="text-center" :class="ingatlan.tehermentes ? 'igen' : 'nem'">{{ ingatlan.tehermentes ? "igen" : "nem" }}</td>
-            <td> <img :src="ingatlan.kepUrl" class="kep"></td>
-        </tr>
-    </table>
+</h1>
+<table>
+    <tr>
+        <th>Kategoria</th>
+        <th>Leiras</th>
+        <th>Hirdetes datuma</th>
+        <th>Tehermentes</th>
+        <th>Fénykép</th>
+    </tr>
+    <tr v-for="ingatlan in ingatlanok" :key="ingatlan.id">
+        <td class="text-center">{{ ingatlan.kategoriaNev }}</td>
+        <td>{{ ingatlan.leiras }}</td>
+        <td class="text-center ">{{ ingatlan.hirdetesDatuma }}</td>
+        <td class="text-center" :class="ingatlan.tehermentes ? 'zold' : 'piros'">{{ ingatlan.tehermentes ? "Igen" : "Nem" }}</td>
+        <td> <img :src="ingatlan.kepUrl" class="kep"></td>
+    </tr>
+</table>
+
 </template>
 
 <style>
@@ -63,10 +65,12 @@ export default {
         height: 100px;
     }
     .zold {
-        background-color: lightgreen;
+        color: lightgreen;
+        
     }
     .piros {
-        background-color: lightcoral;
+        color: lightcoral;
+       
     }
     
 </style>

@@ -7,7 +7,7 @@
                     <router-link class="btn btn-primary" to="/offers">Nézze meg kínálatunkat!</router-link>
                 </div>
                 <div class="col-12 col-sm-6 text-center">
-                    <router-link class="btn btn-primary" to="/newAdd">Hirdessen nálunk!</router-link>
+                    <router-link class="btn btn-primary" to="/newadd">Hirdessen nálunk!</router-link>
                 </div>
             </div>
         </div>
