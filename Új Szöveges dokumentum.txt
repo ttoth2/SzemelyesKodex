@@ -3,3 +3,17 @@ php artisan serve
 php artisan  make:migration create_families_table
 php artisan make:migration add_family_id_to_name_table
 php artisan migrate
+
+VUE:
+npm install -D pug pug-plain-loader 
+npm run dev
+npm install -D less-loader
+
+
+
+
+
+
+
+
+https://lesscss.org/

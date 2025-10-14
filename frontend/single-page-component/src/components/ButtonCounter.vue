@@ -1,8 +1,8 @@
-<template>
+<template lang="pug">
     <div>
-        <button @click ="counter++"> Add 1</button>
-        <p>Counter: {{counter}}</p>
-    </div>
+        button(@click ="counter++")  Add 1
+        p Counter: {{counter}}
+
 </template>
 
 <script>
@@ -15,8 +15,9 @@
     }
 </script>
 
-<style scope>
+<style lang="less" scope>
+@color: green;
     p{
-        color : blue;
+        color : @color;
     }
 </style>
