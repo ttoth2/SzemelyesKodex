@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Name;
 use App\Models\Family;
+use Illuminate\Http\Request;
 
 class TesztController
 {
@@ -47,6 +48,15 @@ class TesztController
 
         return $familyrecord->id;
     }
+
+    public function deleteName(Request $request)
+    {
+        $name = Name::find($request->input('id'));
+        $name->delete();
+        return "ok";
+    }
+
+
     /*
     $names = \DB::table('names')
     ->where('name,'<>'Tomo')
@@ -58,5 +68,25 @@ class TesztController
     where <> 'Tomo' And id >1
     order by id desc'
     );
+    */
+
+    /*
+    function SaveData(Request $request) {}
+
+    function returnObject()
+    {
+        $obj = new \stdClass();
+        $obj->name = "Jani";
+        $obj->server = "SZBI-PG";
+        return response()->json($obj);
+    }
+    function returnError()
+    {
+        return response()->view('error', ['változó' => 'ez egy váktozó értéks'], 404);
+    }
+
+    function redirectAway(){
+        return redirect('https://szbi-pg.hu')
+    }
     */
 }

@@ -34,10 +34,66 @@
                         @endempty
                         <td>{{ $name->name }}</td>
                         <td>{{ $name->created_at }}</td>
-
+                        <td>
+                            <a href="#" class="btn btn-sm btn-danger btn-delete-name"
+                                data-id="{{ $name->id }}">Törés</a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 @endsection
+@section('scripts')
+    <script>
+        $('.btn-delete-name').on('click', function() {
+            let thisBtn = $(this);
+            let id = thisBtn.data('id');
+            $.ajax({
+                type: 'POST',
+                url: '/names/delete',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: id
+                },
+                success: function() {
+                    thisBtn.closest('tr').fadeOut()
+                },
+                error: function() {
+                    alert('Nem sikerült a törlés');
+                }
+
+
+            })
+        })
+    </script>
+@endsection
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let deleteButtons = document.querySelectorAll('.btn-delete-name');
+
+        deleteButtons.forEach(function(button) {
+            let id = this.dataset.id;
+
+            let formData = new FormData();
+            formData.append('_token', '{{ csrf_token() }}');
+            formData.append('id', id);
+
+            fetch('/names/delete', {
+                method: 'POST',
+                body: formData
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Nem ikerült komának')
+                }
+                return response;
+            }).then(() => {
+                let row = this.closest('tr');
+                row.style.display = 'none';
+            }).catch(error => {
+                alert(error.message)
+            });
+        });
+    })
+</script>
