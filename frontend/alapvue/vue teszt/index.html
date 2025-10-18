@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+  
+</head>
+<body>
+    <div id="app">
+    <ol >
+        <li v-for="x in manyFoods">
+            <img  v-bind:src="'img_'+x+'.svg'">
+        </li>
+    </ol>
+
+    <select v-model="inpt" >
+        <option  v-for="x in manyFoods" >{{x}}</option>
+    </select>
+    <div v-if="inpt">
+        <img :src="'img_'+inpt.toLowerCase()+'.svg'"> 
+        <p>{{inpt}}</p>
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

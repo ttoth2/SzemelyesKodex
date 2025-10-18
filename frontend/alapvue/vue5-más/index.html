@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>
+            Vezetéknév: <input v-model="message1" maxlength="10">
+            <small>{{ vezeteknevHatralevo[0] }} karakter maradt</small>
+        </p>
+        <p>
+            Keresztnév: <input v-model="message2" maxlength="20">
+            <small>{{ vezeteknevHatralevo[1] }} karakter maradt</small>
+        </p>
+        
+        <h1>Üdvözöllek {{ message1 }} {{ message2 }}</h1>
+
+        <button @click="Magyarka">Magyar</button>
+        <button @click="Angolka">Angol</button>
+        
+        
+        <h2>{{ statusz }}</h2>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
