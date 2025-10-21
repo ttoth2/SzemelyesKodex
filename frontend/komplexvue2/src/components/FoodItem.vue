@@ -1,16 +1,39 @@
 <template>
     <div @click="FAV" >
+        <h2>
+            {{ foodName }}
+            <img src="../img_quality.svg" v-show="isFavourite" title="Komákoskép">
+        </h2>
+         <p>{{ foodDesc }}</p>
+        
+    </div>
+     <!--
+    <div @click="FAV" >
         <h2>{{ foodName }}
         <img src="../img_quality.svg" v-show="Fav" title="Komákoskép">
         </h2>
         <p>{{ foodDesc }}</p>
         
-        <!-- <p id="red">klikkelések:{{  clicks}}</p> -->
-    </div>
+        !-- <p id="red">klikkelések:{{  clicks}}</p> --
+    </div>-->
 </template>
 <script>
 export default {
-    props: {
+
+    props: [
+        'foodName',
+        'foodDesc',
+        'isFavourite'
+    ],
+    emits:['toggle-favorite'],
+    methods: {
+        FAV() {
+            //this.Fav = !this.Fav;
+            this.$emit('toggle-favorite', this.foodName)
+        }
+    }
+
+   /* props: {
         foodName: {
             type: String,
             required: true,
@@ -46,12 +69,13 @@ export default {
             message: 'szeretem az amlát',
             clicks: 0
         }
-    },*/
+    },
     methods: {
         FAV() {
             this.Fav = !this.Fav;
         }
     }
+    */
 }
 </script>
 <style>
