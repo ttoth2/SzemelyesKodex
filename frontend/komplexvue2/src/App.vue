@@ -1,5 +1,6 @@
 <script>
 //import HelloWorld from './components/HelloWorld.vue'
+//import TodoItem  from './components/TodoItem.vue';
 export default {
   data() {
     return {
@@ -29,10 +30,16 @@ export default {
           desc: 'koma mind megette',
           favorite: false
         }
-      ]
+      ],
+      newItem: '',
+      items: ['HEHEHEHAW','rizs','halsült']
     };
   },
   methods: {
+    addItem() {
+      this.items.push(this.newItem);
+      this.newItem ='';
+    },
     removeItem() {
       this.foods.splice(0, 1);
     },
@@ -69,6 +76,33 @@ export default {
     food-desc="A Rizset Soma termelte"/>-->
   </div>
   
+  <h3>Teendők listája</h3>
+  <ul>
+    <todo-item v-for="x in items" 
+    :key="x" 
+    :item-name="x"
+    style="background-color: lightgreen;"
+    />
+    <input v-model="newItem"/>
+    <button @click="addItem">Hozzáadás</button>
+    <h3>Vue Slotok</h3>
+    <div class="wrapper">
+      <slot-comp v-for="x in foods" :key="x">
+        <img :src="x.url" alt="">
+        <h4>{{ x.name }}</h4>
+        <p>{{ x.desc }}</p>
+
+      </slot-comp>
+    </div>
+    <h3>Fallback tartalom</h3>
+    <slot-comp>
+
+    </slot-comp>
+    <footer>
+      <h3>copyright SOMA 2024</h3>
+      <p>lablec</p>
+    </footer>
+  </ul>
 
 </template>
 
