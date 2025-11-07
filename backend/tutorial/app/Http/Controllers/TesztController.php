@@ -22,13 +22,13 @@ class TesztController
 
         //$names=['soma','koma','róka','tunya'];
         $names = Name::all();
-
+        $families = Family::all();
         //$names=Name::find(1);
         //$names=Name::where('name','Tomo')->first();//elsö ilyent adja meg
         //$names=Name::where('name','Tomo')->get();//összes ilyent adja meg
         //$names=Name::where('id','>',2)->get();//2nél nagyobb id-jüeket adja meg
         //$names=Name::orderBy('name','<>','Tomo')->whereAnd('id','>',1)->orderBy('id','desc')->get();//1nél nagyobb id-jüeket adja meg név szerint csökkenö sorrendben
-        return view('pages.names', compact('names'));
+        return view('pages.names', compact('names', 'families'));
     }
 
     public function namesCreate($family, $name)
@@ -89,4 +89,33 @@ class TesztController
         return redirect('https://szbi-pg.hu')
     }
     */
+
+    public function manageSurname()
+    {
+        $names = Family::all();
+        return view('pages.surname', compact('names'));
+    }
+    public function deleteSurname(Request $request)
+    {
+        $name = Family::find($request->input('id'));
+        $name->delete();
+        return "ok";
+    }
+    public function newSurname(Request $request)
+    {
+        $familyrecord = new Family();
+        $familyrecord->surname = $request->input('inputFamily');
+        $familyrecord->save();
+
+        return redirect('/names/manage/surname');
+    }
+    public function newName(Request $request)
+    {
+        $namerecord = new Name();
+        $namerecord->family_id = $request->input('inputFamily');
+        $namerecord->name = $request->input('inputName');
+        $namerecord->save();
+
+        return redirect('/names');
+    }
 }

@@ -42,6 +42,30 @@
                 @endforeach
             </tbody>
         </table>
+
+        <h3 class="mt-3">Új név hozzáadása</h3>
+        <form method="post" action="/names/manage/name/new">
+            @csrf
+            <div class="form-group">
+                <label for="inputFamily">Családnév</label>
+                <select name="inputFamily" id="inputFamily" class="form-control">
+                    @foreach ($families as $family)
+                        <option value="{{ $family->id }}">
+                            {{ $family->surname }}
+                        </option>
+                    @endforeach
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inputName">Keresztnév</label>
+                <input type="text" class="form-control" id="inputName" name="inputName">
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">
+                Hozzáad
+            </button>
+        </form>
+
     </div>
 @endsection
 @section('scripts')
@@ -70,7 +94,7 @@
 @endsection
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    /*  document.addEventListener('DOMContentLoaded', function() {
         let deleteButtons = document.querySelectorAll('.btn-delete-name');
 
         deleteButtons.forEach(function(button) {
@@ -95,5 +119,5 @@
                 alert(error.message)
             });
         });
-    })
+    })*/
 </script>
