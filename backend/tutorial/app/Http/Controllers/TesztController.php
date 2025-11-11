@@ -35,9 +35,9 @@ class TesztController
     {
         $namerecord = new Name();
         $namerecord->name = $name;
-
         $namerecord->family_id = $family;
         $namerecord->save();
+
         return $namerecord->id;
     }
     public function familyCreate($name)

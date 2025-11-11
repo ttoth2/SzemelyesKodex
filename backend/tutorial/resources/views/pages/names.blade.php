@@ -18,7 +18,8 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Név</th>
+                    <th>Vezetéknév</th>
+                    <th>Kersztnév</th>
                     <th>Létrehozva</th>
 
                 </tr>

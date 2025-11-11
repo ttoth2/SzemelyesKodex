@@ -14,7 +14,7 @@
                     <a class="nav-link" href="/teszt">teszt?????</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/names">soma-koma</a>
+                    <a class="nav-link" href="/names">soma-koma nevek</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="/names/manage/surname">családnevek</a>
