@@ -1,7 +1,10 @@
 <script>
+import SlotComp from './components/SlotComp.vue';
 //import HelloWorld from './components/HelloWorld.vue'
 //import TodoItem  from './components/TodoItem.vue';
+//import TodoItem  from './components/FoodItem.vue';
 export default {
+  components: { SlotComp },
   data() {
     return {
       foods: [
@@ -78,31 +81,58 @@ export default {
   
   <h3>Teendők listája</h3>
   <ul>
-    <todo-item v-for="x in items" 
-    :key="x" 
-    :item-name="x"
-    style="background-color: lightgreen;"
-    />
+    <div class="wrapper">
+      <todo-item v-for="x in items" 
+      :key="x" 
+      :item-name="x"
+      style="background-color: lightgreen;"
+      />
+      
+      
+    </div>
+    
     <input v-model="newItem"/>
     <button @click="addItem">Hozzáadás</button>
     <h3>Vue Slotok</h3>
-    <div class="wrapper">
-      <slot-comp v-for="x in foods" :key="x">
+    <!--
+      <slot-comp #default v-for="x in foods" :key="x">
         <img :src="x.url" alt="">
         <h4>{{ x.name }}</h4>
         <p>{{ x.desc }}</p>
 
       </slot-comp>
-    </div>
-    <h3>Fallback tartalom</h3>
-    <slot-comp>
-
-    </slot-comp>
-    <footer>
-      <h3>copyright SOMA 2024</h3>
-      <p>lablec</p>
-    </footer>
+  -->
+      <slot-comp>
+       
+        <template ><!--v-slot:bottomSlot-->
+            <h3>slot koma slot</h3>
+            <p>ihajjacsuhajja</p>
+        </template>
+      </slot-comp>
+      
+      <slot-comp>
+        <h2>statikus{{ texts }}</h2>
+        <h2>dinamikus{{ texts }}</h2>
+      </slot-comp>
+      <slot-comp>
+        <template #rightSlot="rightProps">
+          <div>{{ rightProps.text }}</div>
+        </template>
+      </slot-comp>
+      <slot-comp>
+        <template #lefttSlot="leftProps">
+          <div>{{ leftProps.text }}</div>
+        </template>
+      </slot-comp>
+      <slot-comp v-slot="food">
+            <h4>{{ food.foodName }}</h4>
+            <img :src="" ></img>
+            <p>{{ food.foodDesc }}</p>
+      </slot-comp>   
+    
   </ul>
+
+       
 
 </template>
 
@@ -127,5 +157,9 @@ export default {
     display: flex;
     flex-wrap: wrap;
   }
-
+  img{
+   float :right;
+   height: 70px;
+   margin: 10px;
+ }
 </style>
