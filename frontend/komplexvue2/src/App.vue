@@ -4,162 +4,145 @@ import SlotComp from './components/SlotComp.vue';
 //import TodoItem  from './components/TodoItem.vue';
 //import TodoItem  from './components/FoodItem.vue';
 export default {
-  components: { SlotComp },
-  data() {
-    return {
-      foods: [
-        {
-          name: 'alma',
-          desc: 'fán terem azt megeszem',
-          favorite: true
-        },
-        {
-          name: 'pizza',
-          desc: 'a pizát somma süti',
-          favorite: true
-        },
-        {
-          name: 'rizs',
-          desc: 'a risz egy soma féle gabona',
-          favorite: false
-        },
-        {
-          name: 'hal',
-          desc: 'soma halászta',
-          favorite: false
-        },
-        {
-          name: 'setemény',
-          desc: 'koma mind megette',
-          favorite: false
+    /*components: {
+        'food-item':FoodItem,
+    },*/
+    data() {
+        return {
+            foods: [
+                { name: 'Alma', desc: 'Az alma egy fán termő fyümölcs', favorite: true },
+                { name: 'Pizza', desc: 'A pizza kenyértészta alapon, paradicsomszósz, sajt és más feltétek', favorite: false },
+                { name: 'Rizs', desc: 'A rizs egy gabonaféle, amit sok ember fogyaszt', favorite: true },
+                { name: 'Hal', desc: 'A hal egy vízben élő állat', favorite: false },
+                { name: 'Sütemény', desc: 'A sütemény édes és nagyon finom', favorite: true}
+
+            ],
+            newItem: "",
+            items: ['Bevásárlás', 'Mosás', 'Takarítás']
         }
-      ],
-      newItem: '',
-      items: ['HEHEHEHAW','rizs','halsült']
-    };
-  },
-  methods: {
-    addItem() {
-      this.items.push(this.newItem);
-      this.newItem ='';
     },
-    removeItem() {
-      this.foods.splice(0, 1);
-    },
-    receiveEmit(foodId) {
-      const foundFood = this.foods.find(
-        food=> food.name===foodId
-      )
-      foundFood.favorite =  !foundFood.favorite
+    methods: {
+        removeItem() {
+            this.foods.splice(0, 1);//a tömbből kivágja az első elemet
+        },
+        receiveEmit(foodId) {
+            //alert(foodId+' Ételre kattintottál');
+            const foundFood = this.foods.find(food => food.name == foodId); 
+            foundFood.favorite = !foundFood.favorite;
+
+        },
+        addItem() {
+            this.items.push(this.newItem);
+            this.newItem = "";
+        }
     }
-  }
 }
 </script>
 
 <template>
-  <h1>{{ message }}</h1>
-  <h1>ÉTELEK</h1>
-  <button @click="removeItem">Törlés</button>
-  <div id="wrapper">
-    <food-item v-for="x in foods"
-    :key ="x.name"
-    :food-name="x.name"
-    :food-desc="x.desc"
-    :is-favourite="x.favorite"
-    @toggle-favorite="receiveEmit"
+    <!--<h1>Ételek</h1>
+    <button @click="removeItem">Törlés</button>
+    <div id="wrapper">
+        <food-item v-for="x in foods"
+        :key="x.name"
+        :food-name="x.name"
+        :food-desc="x.desc"
+        :is-favorite="x.favorite"
+        @toggle-favorite="receiveEmit"
+        />
 
-    />
-    <!--
-    <food-item 
-    food-name="Pizza"
-    food-desc="A Pizza a kománál készül"
-    :is-favourite="true"/>
-    <food-item 
-    food-name="Rizs"
-    food-desc="A Rizset Soma termelte"/>-->
-  </div>
-  
-  <h3>Teendők listája</h3>
-  <ul>
-    <div class="wrapper">
-      <todo-item v-for="x in items" 
-      :key="x" 
-      :item-name="x"
-      style="background-color: lightgreen;"
-      />
-      
-      
+        <food-item 
+        food-name="Almák" 
+        food-desc="A különböző almák fákon teremnek" :is-favorite="true"/>
+        <food-item 
+        food-name="Pizza" 
+        food-desc="A pizza kenyértéstra feltétekkel" :is-favorite="false"/>
+        <food-item 
+        food-name="Rizs" 
+        food-desc="Nagyon sok ember fogyaszt rizst" :is-favorite="false"/>
     </div>
-    
-    <input v-model="newItem"/>
+    <h3>Teendők listája</h3>
+    <ul>
+        <todo-item
+        v-for="x in items"
+        :key="x"
+        :item-name="x"
+        style="
+        background-color: lightgreen; 
+        padding: 5px; 
+        margin: 5px; 
+        border: dashed 1px black; 
+        width: fit-content;"
+        ></todo-item>
+    </ul>
+    <input v-model="newItem">
     <button @click="addItem">Hozzáadás</button>
-    <h3>Vue Slotok</h3>
-    <!--
-      <slot-comp #default v-for="x in foods" :key="x">
-        <img :src="x.url" alt="">
-        <h4>{{ x.name }}</h4>
-        <p>{{ x.desc }}</p>
+    <div class="wrapper">
+        <slot-comp v-for="x in foods" :key="x.name">
+            <img :src="x.url">
+            <h4>{{ x.desc }}</h4>
+            <p>{{ x.name }}</p>
+        </slot-comp>
+    </div>-->
+    <!--<h3>Fallback tartalom</h3>
+    <slot>
 
-      </slot-comp>
-  -->
-      <slot-comp>
-       
-        <template ><!--v-slot:bottomSlot-->
-            <h3>slot koma slot</h3>
-            <p>ihajjacsuhajja</p>
+    </slot>
+    <footer>
+        <slot-comp v-slot:bottomSlot>
+            <h3>Ez egy lábléc</h3>
+            <p>Copyright 2024</p>
+        </slot-comp>
+    </footer>
+    <slot-comp>
+        <template #bottomSlot> A v-slot helyett a # is működik
+            <h4>Ez az új tartalom</h4>
+            <p>Ez a tartalom bottomSlot nevű slotba kerül bele</p>
         </template>
-      </slot-comp>
-      
-      <slot-comp>
-        <h2>statikus{{ texts }}</h2>
-        <h2>dinamikus{{ texts }}</h2>
-      </slot-comp>
-      <slot-comp>
-        <template #rightSlot="rightProps">
-          <div>{{ rightProps.text }}</div>
-        </template>
-      </slot-comp>
-      <slot-comp>
-        <template #lefttSlot="leftProps">
-          <div>{{ leftProps.text }}</div>
-        </template>
-      </slot-comp>
-      <slot-comp v-slot="food">
-            <h4>{{ food.foodName }}</h4>
-            <img :src="" ></img>
-            <p>{{ food.foodDesc }}</p>
-      </slot-comp>   
+    </slot-comp>-->
     
-  </ul>
+    <slot-comp v-slot="food" style="background-color: lightgreen; padding: 10px; margin: 0;">
+        <hr>
+        <h2>{{ food.foodName }} <img :src=food.foodUrl style="width: 70px; float: right; margin-left: 10px;"></h2>
+        <p>{{ food.foodDesc }}</p>
+    </slot-comp>
 
-       
+    <!--<slot-comp v-slot="texts">
+        <h2>Statikus szöveg: {{ texts.staticText }}</h2>
+        <h2>Statikus szöveg: {{ texts.dynamicText}}</h2>
+    </slot-comp>-->
+    <br>
+    <hr>
+    <slot-comp>
+        <template #leftSlot="leftProps">
+            <h3>{{ leftProps.text }}</h3>
+        </template>
+    </slot-comp>
 
+    <slot-comp>
+        <template #rightSlot="rightProps">
+            <h3>{{ rightProps.text }}</h3>
+        </template>
+    </slot-comp>
 </template>
 
 <style>
-  #wrapper> div{
-    border:dashed 1px black;
-    display: inline-block;
-    flex-basis: 120px;
-    margin: 10px;
-    padding: 10px;
-    background-color: rgb(43, 255, 43);
-    border-radius: 5%;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
-  }
+    #app{
+        width: 300px;
+    }
 
-  #wrapper> div:hover{
-    cursor: pointer
-  }
-  #wrapper{
-    display: flex;
-    flex-wrap: wrap;
-  }
-  img{
-   float :right;
-   height: 70px;
-   margin: 10px;
- }
+    /*#wrapper{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    #wrapper > div{
+        border: dashed 1px black;
+        flex-basis: 120px;
+        margin: 10px;
+        padding: 10px;
+        background-color: lightgreen;
+    }
+    #app > div:hover{
+        cursor: pointer;
+    }*/
 </style>
