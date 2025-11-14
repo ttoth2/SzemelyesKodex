@@ -43,7 +43,15 @@
                 @endforeach
             </tbody>
         </table>
-
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <h3 class="mt-3">Új név hozzáadása</h3>
         <form method="post" action="/names/manage/name/new">
             @csrf
@@ -60,7 +68,8 @@
             </div>
             <div class="form-group">
                 <label for="inputName">Keresztnév</label>
-                <input type="text" class="form-control" id="inputName" name="inputName">
+                <input type="text" class="form-control" id="inputName" name="inputName" value="{{ old('inputName') }}"
+                    minlength="2" maxlength="20" required>
             </div>
             <button type="submit" class="btn btn-primary mt-2">
                 Hozzáad

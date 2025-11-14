@@ -37,13 +37,24 @@
                     </tr>
                 @endforeach
             </tbody>
+
         </table>
         <h3 class="mt-3">Új családnév</h3>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form method="post" action="/names/manage/surname/new">
             @csrf
             <div class="form-group">
                 <label for="inputfamily">Családnév</label>
-                <input type="text" class="form-control" id="inputFamily" name="inputFamily" placeholder="Családnév">
+                <input type="text" class="form-control" id="inputFamily" name="inputFamily"
+                    placeholder="Családnév"value="{{ old('inputFamily') }}" minlength="2" maxlength="20">
 
             </div>
             <button type="submit" class="btn btn-primary mt-2">hozzáad</button>
@@ -63,8 +74,11 @@
                     _token: '{{ csrf_token() }}',
                     id: id
                 },
-                success: function() {
-                    thisBtn.closest('tr').fadeOut()
+                success: function(data) {
+                    if (data.success == true) {
+                        thisBtn.closest('tr').fadeOut()
+                    } else alert('hiba történ a törlésnél:' + data.message);
+
                 },
                 error: function() {
                     alert('Nem sikerült a törlés');

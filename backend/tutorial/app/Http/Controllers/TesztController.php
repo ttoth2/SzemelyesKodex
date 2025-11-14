@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Name;
 use App\Models\Family;
 use Illuminate\Http\Request;
+use Exception;
+use Illuminate\Database\QueryException;
 
 class TesztController
 {
@@ -97,12 +99,22 @@ class TesztController
     }
     public function deleteSurname(Request $request)
     {
-        $name = Family::find($request->input('id'));
-        $name->delete();
-        return "ok";
+        try {
+            $name = Family::find($request->input('id'));
+            $name->delete();
+            return response()->json(['success' => true]);
+        } catch (QueryException $e) {
+            return response()->json(['success' => false, 'message' => 'a családnév nem törölhetö :(']);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'message' => 'ismeretlen hiba' . $e->getMessage()]);
+        }
     }
     public function newSurname(Request $request)
     {
+        $validateData = $request->validate([
+            'inputFamily' => 'required|alpha|min:2|max:20',
+        ]);
+
         $familyrecord = new Family();
         $familyrecord->surname = $request->input('inputFamily');
         $familyrecord->save();
@@ -111,6 +123,11 @@ class TesztController
     }
     public function newName(Request $request)
     {
+        $validateData = $request->validate([
+            'inputFamily' => 'required|integer|exists:App\Models\Family,id',
+            'inputName' => 'required|alpha|min:2|max:20',
+
+        ]);
         $namerecord = new Name();
         $namerecord->family_id = $request->input('inputFamily');
         $namerecord->name = $request->input('inputName');
