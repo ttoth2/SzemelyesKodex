@@ -36,8 +36,7 @@
                         <td>{{ $name->name }}</td>
                         <td>{{ $name->created_at }}</td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-danger btn-delete-name"
-                                data-id="{{ $name->id }}">Törés</a>
+                            <a href="#" class="btn-delete-name" data-id="{{ $name->id }}">Törés</a>
                         </td>
                     </tr>
                 @endforeach
