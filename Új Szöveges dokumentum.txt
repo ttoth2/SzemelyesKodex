@@ -15,9 +15,9 @@ npm init vue@latest
 npm i
 npm install axios     
 
-
-
-
+npm create vue@latest TothTamas_frontend
+npm install --save bootstrap
+npm install vue-router@4
 
 
 
