@@ -17,3 +17,23 @@ https://any.coop/A7kbHUsJw4CYbbLo2JBUFSsqh4CVP4hkF8S1KnWbZoFehdA6/databases
 https://any.coop/A7kbHUsJw4CYbbLo2JBUFSsqh4CVP4hkF8S1KnWbZoFehdA6/the-file-system-of-laravel
 
 https://any.coop/A7kbHUsJw4CYbbLo2JBUFSsqh4CVP4hkF8S1KnWbZoFehdA6/setup
+
+
+
+Dokumentáció:
+https://infojegyzet.hu/webszerkesztes/dokumentacio/
+
+OSZTV:
+https://www.szakmasztar.hu/szakmai-versenyek/feladatok
+
+Dokumentáció minták:
+https://infojegyzet.hu/webszerkesztes/zarodolgozatmintak/
+
+Videók:
+Laravel
+https://youtu.be/Ulv3NfmXUyo?si=X56HWRlsGxmr8Pkv
+
+VUE.JS
+https://youtu.be/R9xVhKD_F-s?si=VwmGp_vK6uMZSXTi
+
+code . #vs studio megnyitás
