@@ -26,4 +26,6 @@ npm install vue-router@4
 
 https://lesscss.org/
 
+code . #vs studio megnyitás
+
 
